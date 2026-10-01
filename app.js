@@ -159,6 +159,7 @@
     clearTimeout(debounce);
     clearTimeout(nameDebounce);
     $("name-form").classList.remove("unlisted");
+    $("number-input").value="";
     var token=++sequence;
     mode="name";
     results=byName.get(name);
@@ -257,11 +258,13 @@
   async function submitName() {
     clearTimeout(nameDebounce); clearTimeout(debounce);
     var value=$("name-input").value.trim();
+    if(!value) { hideSuggestions(); return; }
     var exact=names.find(function (name) { return name.replace(/\s/g,"").toLowerCase()===value.replace(/\s/g,"").toLowerCase(); });
-    var name=exact || (suggestionAt>=0?nameMatches(value)[suggestionAt]:null);
-    hideSuggestions();
-    if(name) { chooseName(name,true); return; }
-    if(!value) return;
+    var matches=nameMatches(value);
+    var name=exact || (suggestionAt>=0?matches[suggestionAt]:matches.length===1?matches[0]:null);
+    if(name) { hideSuggestions(); chooseName(name,true); return; }
+    if(matches.length) { renderNames(value); $("name-input").focus(); return; }
+    hideSuggestions(); $("number-input").value="";
     mode="name"; results=[]; selected={name:value,id:"",dept:"전기·정보공학부",status:"unknown"};
     var token=++sequence;
     $("name-form").classList.add("unlisted"); $("readout").hidden=true;
