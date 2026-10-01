@@ -1,6 +1,8 @@
 # studentnum_hacker
 
 전정 25학번 이름 명단에서 이름 → 학번 후보, 학번 → 이름 후보를 검색합니다.
+[공개 사이트](https://ece25-dial.legojmon658439.chatgpt.site)
+
 `index.html`을 직접 열거나 `python -m http.server 8000`으로 실행합니다.
 
 ## 화면과 조작
