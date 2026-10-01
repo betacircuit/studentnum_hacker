@@ -15,6 +15,20 @@ test("박준후는 양방향에서 확인된 2025-19418", () => {
   assert.equal(describeMatch(byName[0], "name", students), "확인됨");
 });
 
+test("사용자가 정정한 표시명은 전체 이름으로 조회하고 학번은 추정 상태 유지", () => {
+  const cohort = require("../data/cohort.json");
+  for (const [oldName, name, id] of [["Sassy 승경", "서승경", "2025-11412"], ["규원", "홍규원", "2025-18846"]]) {
+    assert.ok(!cohort.some(s => s.name === oldName));
+    assert.ok(cohort.some(s => s.name === name && s.fullName));
+    assert.ok(!students.some(s => s.name === oldName));
+    const result = search(students, name).results;
+    assert.equal(result.length, 1);
+    assert.equal(result[0].id, id);
+    assert.equal(result[0].status, "probable");
+    assert.ok(search(students, id).results.some(s => s.name === name));
+  }
+});
+
 test("편성주는 제외하고 동일 끝자리 남석윤을 양방향으로 조회", () => {
   assert.equal(search(students, "편성주").results.length, 0);
   assert.deepEqual(search(students, "2025-12803").results.map(s => s.name), ["남석윤"]);

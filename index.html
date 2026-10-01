@@ -3,143 +3,75 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>전정 25학번 이름·학번 조회</title>
-  <style>
-    :root {
-      --bg: #f6f7f9;
-      --card: #ffffff;
-      --text: #1c2330;
-      --muted: #5f6b7d;
-      --line: #dde2ea;
-      --accent: #2557d6;
-      --accent-soft: #e6edff;
-      --mark: #ffe58a;
-      --warn-bg: #fff4d6;
-      --warn-text: #6b4a00;
-      --warn-line: #f0d98a;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #12151b;
-        --card: #1b2029;
-        --text: #e8ebf1;
-        --muted: #9aa6b8;
-        --line: #2b3240;
-        --accent: #7aa2ff;
-        --accent-soft: #232c45;
-        --mark: #7a6200;
-        --warn-bg: #3a2f10;
-        --warn-text: #f3d98b;
-        --warn-line: #5c4a16;
-      }
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-      line-height: 1.5;
-    }
-    main { max-width: 640px; margin: 0 auto; padding: 24px 16px 64px; }
-    h1 { font-size: 1.4rem; margin: 8px 0 4px; }
-    .sub { color: var(--muted); margin: 0 0 16px; font-size: 0.92rem; }
-    .banner {
-      background: var(--warn-bg);
-      color: var(--warn-text);
-      border: 1px solid var(--warn-line);
-      border-radius: 10px;
-      padding: 10px 12px;
-      font-size: 0.88rem;
-      margin-bottom: 16px;
-    }
-    .search {
-      position: relative;
-    }
-    #q {
-      width: 100%;
-      font: inherit;
-      font-size: 1.05rem;
-      padding: 14px 44px 14px 14px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: var(--card);
-      color: var(--text);
-    }
-    #q:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
-    #q::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; display: none; }
-    #clear {
-      position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
-      border: 0; background: transparent; color: var(--muted);
-      font-size: 1.2rem; cursor: pointer; padding: 6px 10px; border-radius: 8px;
-    }
-    #clear[hidden] { display: none; }
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
-    .chip {
-      font: inherit; font-size: 0.85rem; cursor: pointer;
-      border: 1px solid var(--line); background: var(--card); color: var(--text);
-      padding: 4px 12px; border-radius: 999px;
-    }
-    .chip:hover { background: var(--accent-soft); }
-    .meta { color: var(--muted); font-size: 0.85rem; margin: 14px 2px 8px; min-height: 1.3em; }
-    ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-    li {
-      display: flex; align-items: center; justify-content: space-between; gap: 12px;
-      background: var(--card); border: 1px solid var(--line); border-radius: 12px;
-      padding: 12px 14px;
-    }
-    .who { min-width: 0; }
-    .name { font-weight: 600; font-size: 1.05rem; }
-    .sid { font-variant-numeric: tabular-nums; font-size: 1.05rem; letter-spacing: 0.02em; }
-    .detail { color: var(--muted); font-size: 0.82rem; margin-top: 2px; }
-    .status { color: var(--warn-text); font-size: 0.85rem; margin: 6px 0; }
-    .status.confirmed { color: var(--accent); }
-    .status.unknown { color: var(--muted); }
-    details { margin-top: 24px; }
-    summary { cursor: pointer; color: var(--muted); }
-    li { align-items: flex-start; }
-    mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1px; }
-    .copy {
-      flex: none; font: inherit; font-size: 0.82rem; cursor: pointer;
-      border: 1px solid var(--line); background: transparent; color: var(--accent);
-      border-radius: 8px; padding: 6px 10px;
-    }
-    .copy:hover { background: var(--accent-soft); }
-    .empty { text-align: center; color: var(--muted); padding: 28px 8px; }
-    footer { color: var(--muted); font-size: 0.8rem; margin-top: 28px; }
-    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-  </style>
+  <meta name="theme-color" content="#05080d">
+  <title>전정 · Dial</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main>
-    <h1>전정 25학번 이름 · 학번 조회</h1>
-    <p class="sub">이름을 입력하면 학번이, 학번(일부 숫자도 가능)을 입력하면 이름이 나옵니다.</p>
-
-    <div class="banner" role="note">
-      <strong>확인됨</strong>은 전체 학번을 직접 확인한 항목입니다. 나머지는 이름 명단과 학번 끝 3자리로 추정한 후보이며, 여러 후보가 있으면 후보 간 우선순위가 없습니다.
+  <main class="observatory">
+    <h1 class="sr">전정 25학번 이름·학번 다이얼</h1>
+    <div class="emblem" aria-label="전정 다이얼 로고" role="img">
+      <svg viewBox="0 0 320 320" aria-hidden="true">
+        <defs><radialGradient id="halo"><stop stop-color="#24b9e8" stop-opacity=".13"/><stop offset="1" stop-color="#24b9e8" stop-opacity="0"/></radialGradient></defs>
+        <circle cx="160" cy="160" r="159" fill="url(#halo)"/>
+        <circle class="orbit outer" cx="160" cy="160" r="148" fill="none" stroke="#ceb66b" stroke-width="2" stroke-dasharray="5 11"/>
+        <circle class="orbit blue" cx="160" cy="160" r="132" fill="none" stroke="#4fc8f1" stroke-width="1.5"/>
+        <circle cx="160" cy="160" r="110" fill="none" stroke="#bfa362" stroke-opacity=".5"/>
+        <g stroke="#dbc079" stroke-width="3" stroke-linecap="round"><path d="M160 32v24 M160 264v24 M32 160h24 M264 160h24"/></g>
+        <g stroke="#50c6ed" stroke-width="2.5" stroke-linecap="round"><path d="m68 68 17 17 m147-17-17 17 m-147 147 17-17 m147 17-17-17"/></g>
+        <g fill="#d7b74e"><circle cx="160" cy="160" r="62" fill="#090e15" stroke="#d4b64f" stroke-width="3"/><circle cx="160" cy="76" r="3.5"/><circle cx="244" cy="160" r="3.5"/><circle cx="160" cy="244" r="3.5"/><circle cx="76" cy="160" r="3.5"/></g>
+        <path d="m160 111 42 73h-84z" fill="none" stroke="#42c6f2" stroke-width="2.5"/>
+        <circle cx="160" cy="160" r="23" fill="#090e15" stroke="#d5b97a" stroke-width="2.5"/><circle class="core" cx="160" cy="160" r="8" fill="#41c7f4"/>
+      </svg>
     </div>
-
-    <label class="sr" for="q">이름 또는 학번</label>
-    <div class="search">
-      <input id="q" type="search" inputmode="search" autocomplete="off" spellcheck="false"
-             placeholder="이름 또는 학번 입력" autofocus>
-      <button id="clear" type="button" aria-label="입력 지우기" hidden>×</button>
-    </div>
-
-    <div class="chips" id="chips" aria-label="검색 예시"></div>
-    <div class="meta" id="meta" aria-live="polite"></div>
-    <ul id="results"></ul>
-
-    <details>
-      <summary id="missing-summary">학번 정보가 없는 이름</summary>
-      <div class="chips" id="missing-names"></div>
-    </details>
-
-    <footer>이름을 검색하면 학번 후보를, 학번을 검색하면 이름 후보를 표시합니다. 별명은 전체 이름 확인이 필요합니다.</footer>
+    <section class="instrument" aria-label="이름·학번 검색">
+      <div class="plate number-plate">
+        <span class="edge-pointer left" aria-hidden="true">▸</span>
+        <div class="number-dial" id="number-dial" role="group" aria-label="학번 다이얼"></div>
+        <span class="edge-pointer right" aria-hidden="true">◂</span>
+        <div class="calibration" aria-hidden="true"></div>
+      </div>
+      <form class="number-entry" id="number-form">
+        <label class="sr" for="number-input">학번 숫자 입력</label>
+        <input id="number-input" type="text" inputmode="numeric" autocomplete="off" maxlength="10" placeholder="···" aria-label="학번 숫자 입력">
+        <button type="submit" class="icon" aria-label="학번 검색" title="학번 검색">↵</button>
+      </form>
+      <div class="coupling" aria-hidden="true"><span></span><i></i><span></span></div>
+      <div class="name-assembly">
+        <div class="plate name-plate"><div id="name-dial" class="name-dial" role="group" aria-label="이름 결과 다이얼"></div></div>
+      </div>
+      <form id="name-form" class="name-entry" autocomplete="off">
+        <label class="sr" for="name-input">이름 입력</label>
+        <input id="name-input" type="text" aria-label="이름 입력" role="combobox" aria-controls="name-suggestions" aria-expanded="false" aria-autocomplete="list" maxlength="80" placeholder="이름">
+        <button type="submit" class="icon" aria-label="이름 검색">↵</button>
+        <div id="name-suggestions" class="name-suggestions" role="listbox" aria-label="등록된 이름 후보" hidden></div>
+      </form>
+      <div id="full-name" class="full-name" hidden></div>
+      <div id="readout" class="readout" hidden>
+        <div class="small-info"><span id="status-dot" class="status-dot"></span><span id="department"></span><button id="warning" class="warning" type="button" aria-label="미확인 정보 제안" title="미확인 정보 제안" hidden>⚠</button></div>
+        <div id="candidates" class="candidates"></div>
+        <div class="result-controls"><button id="prev-result" class="icon" aria-label="이전 이름 후보" hidden>‹</button><span id="result-count"></span><button id="next-result" class="icon" aria-label="다음 이름 후보" hidden>›</button></div>
+        <button id="request" class="request" type="button">정보 수정 요청</button>
+      </div>
+      <p class="sr" id="announcement" aria-live="polite"></p>
+    </section>
   </main>
-
+  <dialog id="suggest-dialog" class="dialog suggest-dialog">
+    <div class="dialog-top"><span>정보 수정 요청</span><button class="icon close" data-close="suggest-dialog" aria-label="닫기">×</button></div>
+    <p id="suggest-message">이 사람과 관련한 정보를 제안해주세요.</p>
+    <form id="suggest-form">
+      <label>이름<input id="suggest-name" name="name" required maxlength="80"></label>
+      <label>학번<input id="suggest-id" name="id" inputmode="numeric" placeholder="2025-1????" pattern="2025-1[0-9]{4}" maxlength="10"></label>
+      <label>학부<input id="suggest-dept" name="department" maxlength="80"></label>
+      <label>제안 내용<textarea id="suggest-note" name="note" rows="3" required maxlength="1500"></textarea></label>
+      <button class="submit-request" type="submit">수정 요청 보내기 ↗</button>
+      <p class="form-note">새 창에서 최종 제출해주세요.</p>
+      <a id="request-fallback" target="_blank" rel="noopener noreferrer" hidden>요청 제출 화면 열기 ↗</a>
+    </form>
+  </dialog>
   <script src="data.js"></script>
   <script src="lookup.js"></script>
+  <script src="dial.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
