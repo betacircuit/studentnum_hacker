@@ -25,31 +25,38 @@
       </svg>
     </div>
     <section class="instrument" aria-label="이름·학번 검색">
-      <div class="plate number-plate">
-        <span class="edge-pointer left" aria-hidden="true">▸</span>
-        <div class="number-dial" id="number-dial" role="group" aria-label="학번 다이얼"></div>
-        <span class="edge-pointer right" aria-hidden="true">◂</span>
-        <div class="calibration" aria-hidden="true"></div>
+      <div class="dial-layout">
+        <div class="dial-module name-module">
+          <div class="name-assembly">
+            <div class="plate name-plate"><div id="name-dial" class="name-dial" role="group" aria-label="이름 결과 다이얼"></div></div>
+          </div>
+          <form id="name-form" class="name-entry" autocomplete="off">
+            <label class="sr" for="name-input">이름 입력</label>
+            <input id="name-input" type="text" aria-label="이름 입력" role="combobox" aria-controls="name-suggestions" aria-expanded="false" aria-autocomplete="list" maxlength="80" placeholder="이름">
+            <button type="submit" class="icon" aria-label="이름 검색">↵</button>
+            <div id="name-suggestions" class="name-suggestions" role="listbox" aria-label="등록된 이름 후보" hidden></div>
+          </form>
+          <div id="full-name" class="full-name" hidden></div>
+        </div>
+        <div class="coupling" aria-hidden="true"><span></span><i></i><span></span></div>
+        <div class="dial-module number-module">
+          <div class="plate number-plate">
+            <span class="edge-pointer left" aria-hidden="true">▸</span>
+            <div class="number-dial" id="number-dial" role="group" aria-label="학번 다이얼"></div>
+            <span class="edge-pointer right" aria-hidden="true">◂</span>
+            <div class="calibration" aria-hidden="true"></div>
+          </div>
+          <form class="number-entry" id="number-form">
+            <label class="sr" for="number-input">학번 숫자 입력</label>
+            <input id="number-input" type="text" inputmode="numeric" autocomplete="off" maxlength="10" placeholder="···" aria-label="학번 숫자 입력">
+            <button type="submit" class="icon" aria-label="학번 검색" title="학번 검색">↵</button>
+          </form>
+        </div>
       </div>
-      <form class="number-entry" id="number-form">
-        <label class="sr" for="number-input">학번 숫자 입력</label>
-        <input id="number-input" type="text" inputmode="numeric" autocomplete="off" maxlength="10" placeholder="···" aria-label="학번 숫자 입력">
-        <button type="submit" class="icon" aria-label="학번 검색" title="학번 검색">↵</button>
-      </form>
-      <div class="coupling" aria-hidden="true"><span></span><i></i><span></span></div>
-      <div class="name-assembly">
-        <div class="plate name-plate"><div id="name-dial" class="name-dial" role="group" aria-label="이름 결과 다이얼"></div></div>
-      </div>
-      <form id="name-form" class="name-entry" autocomplete="off">
-        <label class="sr" for="name-input">이름 입력</label>
-        <input id="name-input" type="text" aria-label="이름 입력" role="combobox" aria-controls="name-suggestions" aria-expanded="false" aria-autocomplete="list" maxlength="80" placeholder="이름">
-        <button type="submit" class="icon" aria-label="이름 검색">↵</button>
-        <div id="name-suggestions" class="name-suggestions" role="listbox" aria-label="등록된 이름 후보" hidden></div>
-      </form>
-      <div id="full-name" class="full-name" hidden></div>
       <div id="readout" class="readout" hidden>
         <div class="small-info"><span id="status-dot" class="status-dot"></span><span id="department"></span><button id="warning" class="warning" type="button" aria-label="미확인 정보 제안" title="미확인 정보 제안" hidden>⚠</button></div>
         <div id="candidates" class="candidates"></div>
+        <div id="name-candidates" class="name-candidates" role="group" aria-label="이름 추정 후보" hidden></div>
         <div class="result-controls"><button id="prev-result" class="icon" aria-label="이전 이름 후보" hidden>‹</button><span id="result-count"></span><button id="next-result" class="icon" aria-label="다음 이름 후보" hidden>›</button></div>
         <button id="request" class="request" type="button">정보 수정 요청</button>
       </div>

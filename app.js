@@ -42,41 +42,51 @@
   };
   Reel.prototype.set = function (value) {
     this.value = value;
+    this.target = value;
     this.el.setAttribute("data-value", value);
     this.draw([this.neighbor(value,-1), value, this.neighbor(value,1)]);
     this.track.style.transform = "translateY(0)";
     this.el.classList.remove("spinning");
+    this.el.classList.remove("stepping");
     this.el.removeAttribute("aria-busy");
   };
-  Reel.prototype.spin = async function (value, duration, turns) {
+  Reel.prototype.spin = function (value, duration, turns, direction) {
+    if (value === this.target) return this.finished || Promise.resolve();
     var version = ++this.version;
-    if (this.animation) this.animation.cancel();
-    if (reduced.matches || duration === 0) { this.set(value); return; }
-    var strip = [this.neighbor(this.value,-1), this.value];
-    var at = Math.max(0, this.symbols.indexOf(this.value));
-    for (var i=0; i<turns; i++) strip.push(this.symbols[(at+i+1)%this.symbols.length]);
-    strip.push(this.neighbor(value,-1),value,this.neighbor(value,1));
+    if (this.animation) { this.animation.cancel(); this.set(this.target); }
+    this.target = value;
+    if (reduced.matches || duration === 0) { this.set(value); return Promise.resolve(); }
+    var strip, start = 0, end, self = this;
+    if (direction) {
+      strip = direction > 0
+        ? [this.neighbor(this.value,-1),this.value,value,this.neighbor(value,1)]
+        : [this.neighbor(value,-1),value,this.value,this.neighbor(this.value,1)];
+    } else {
+      strip = [this.neighbor(this.value,-1),this.value];
+      var at = Math.max(0,this.symbols.indexOf(this.value));
+      for (var i=0;i<turns;i++) strip.push(this.symbols[(at+i+1)%this.symbols.length]);
+      strip.push(this.neighbor(value,-1),value,this.neighbor(value,1));
+    }
     this.draw(strip);
     var row = this.track.firstElementChild.getBoundingClientRect().height;
-    var travel = (strip.length-3)*row;
-    var firstStop = Math.min(travel*.87,travel-row*2.5);
+    end = -(strip.length-3)*row;
+    if (direction < 0) { start = -row; end = 0; }
+    var distance = end-start;
     this.el.classList.add("spinning");
+    this.el.classList.toggle("stepping",!!direction);
     this.track.style.animationDuration = duration + "ms";
     this.el.setAttribute("aria-busy","true");
-    this.animation = this.track.animate([
-      {transform:"translateY(0)",offset:0,easing:"cubic-bezier(.15,.65,.3,1)"},
-      {transform:"translateY("+(-firstStop)+"px)",offset:.58,easing:"cubic-bezier(.2,.65,.35,1)"},
-      {transform:"translateY("+(-travel+row*2)+"px)",offset:.79,easing:"cubic-bezier(.2,.8,.35,1)"},
-      {transform:"translateY("+(-travel+row)+"px)",offset:.9,easing:"cubic-bezier(.45,0,.2,1)"},
-      {transform:"translateY("+(-travel-row*.11)+"px)",offset:.96,easing:"ease-out"},
-      {transform:"translateY("+(-travel+row*.035)+"px)",offset:.985,easing:"ease-in-out"},
-      {transform:"translateY("+(-travel)+"px)",offset:1}
-    ], {duration:duration,fill:"forwards"});
-    try { await this.animation.finished; } catch(e) { return; }
-    if (version !== this.version) return;
-    this.set(value);
-    this.animation.cancel();
-    this.el.removeAttribute("aria-busy");
+    var stages = direction ? [[0,0,"cubic-bezier(.18,.8,.25,1)"],[.58,.84,"ease-out"],[.79,.97,"ease-in"],[.9,1.065,"ease-out"],[.97,.985,"ease-in-out"],[1,1]]
+      : [[0,0,"cubic-bezier(.12,.65,.2,1)"],[.48,.78,"cubic-bezier(.15,.55,.25,1)"],[.73,.94,"ease-out"],[.85,.987,"ease-in"],[.93,1.012,"ease-out"],[.98,.998,"ease-in-out"],[1,1]];
+    var animation = this.track.animate(stages.map(function (stage) {
+      return {transform:"translateY("+(start+distance*stage[1])+"px)",offset:stage[0],easing:stage[2]||"linear"};
+    }),{duration:duration,fill:"forwards"});
+    this.animation = animation;
+    this.finished = animation.finished.then(function () {
+      if (version !== self.version) return;
+      self.set(value); animation.cancel(); self.animation = null;
+    },function () {});
+    return this.finished;
   };
 
   function interactive(reel, step) {
@@ -116,9 +126,8 @@
       var chars=Array.from(numberDisplay);
       var current=/\d/.test(chars[i])?Number(chars[i]):(direction>0?-1:0);
       chars[i]=String((current+direction+10)%10);
-      for(var j=5;j<9;j++) if(chars[j]==="?") chars[j]="0";
       $("number-input").value=chars.join("").slice(5);
-      lookupNumber(chars.join(""),true);
+      lookupNumber(chars.join(""),true,chars.join(""),{index:i,direction:direction});
     }
     if(i>=5) {
       interactive(reel,stepDigit);
@@ -140,12 +149,13 @@
     var pieces=name?Dial.parts(name):["?","?","?"];
     $("full-name").hidden=!name || Array.from(name.replace(/\s/g,"")).length===3;
     $("full-name").textContent=name;
-    await Promise.all(nameReels.map(function (reel,i) { return reel.spin(pieces[i],quick?170+i*25:1100+i*100,quick?5:30+i*5); }));
+    await Promise.all(nameReels.map(function (reel,i) { return reel.spin(pieces[i],quick?300+i*35:1100+i*100,quick?8+i*2:30+i*5); }));
   }
-  async function animateNumber(display,quick) {
+  async function animateNumber(display,quick,step) {
     numberDisplay=display;
     await Promise.all(numberReels.map(function (reel,i) {
-      return reel.spin(display[i],i<5?0:(quick?150+(i-5)*20:1000+(i-5)*100),quick?5:35+(i-5)*4);
+      var direction=step && step.index===i?step.direction:0;
+      return reel.spin(display[i],i<5?0:direction?240:(quick?320+(i-5)*25:1000+(i-5)*100),quick?8:35+(i-5)*4,direction);
     }));
   }
   function maskedDisplay(person,people) {
@@ -168,19 +178,23 @@
     await Promise.all([animateName(name,quick),animateNumber(maskedDisplay(selected,results),quick)]);
     if(token===sequence) showReadout();
   }
-  async function lookupNumber(raw,quick) {
+  async function lookupNumber(raw,quick,displayOverride,step) {
     clearTimeout(debounce);
     clearTimeout(nameDebounce);
     hideSuggestions();
     $("name-form").classList.remove("unlisted");
-    var parsed=Dial.numberQuery(raw);
+    var parsed=displayOverride?{query:displayOverride,display:displayOverride}:Dial.numberQuery(raw);
     if (!parsed.query) return;
     var token=++sequence;
     mode="id";
-    results=Lookup.search(students,parsed.query).results;
+    results=displayOverride && displayOverride.indexOf("?")!==-1?students.filter(function (person) {
+      if(!person.id) return false;
+      var id=person.id.replace("-","");
+      return Array.from(displayOverride).every(function (digit,i) { return digit==="?" || digit===id[i]; });
+    }):Lookup.search(students,parsed.query).results;
     selected=results[0] || {name:"",id:parsed.display.indexOf("?")<0?parsed.display.slice(0,4)+"-"+parsed.display.slice(4):"",dept:"",status:"unknown"};
     $("readout").hidden=true;
-    await Promise.all([animateNumber(parsed.display,quick),animateName(selected.name,quick)]);
+    await Promise.all([animateNumber(parsed.display,quick,step),animateName(selected.name,quick)]);
     if(token===sequence) showReadout();
   }
   function showReadout() {
@@ -208,6 +222,20 @@
     }
     var resultNames=Array.from(new Set(results.map(function (s) { return s.name; })));
     var multiple=mode==="id" && resultNames.length>1;
+    $("name-candidates").replaceChildren();
+    $("name-candidates").hidden=!multiple;
+    if(multiple) resultNames.forEach(function (name) {
+      var button=document.createElement("button"); button.type="button"; button.className="name-candidate";
+      button.textContent=name; button.title="이 이름일 가능성이 높음 · 미확정";
+      button.classList.toggle("current",name===selected.name); button.setAttribute("aria-pressed",String(name===selected.name));
+      button.addEventListener("click",async function () {
+        selected=results.find(function (person) { return person.name===name; });
+        var token=++sequence;
+        await animateName(name,true);
+        if(token===sequence) showReadout();
+      });
+      $("name-candidates").appendChild(button);
+    });
     $("prev-result").hidden=$("next-result").hidden=!multiple;
     $("result-count").textContent=multiple?(resultNames.indexOf(selected.name)+1)+" / "+resultNames.length:"";
     $("announcement").textContent=(selected.name||"등록되지 않은 학번")+" · "+(selected.id||"2025-1????")+" · "+Lookup.describeMatch(selected,mode,students);
@@ -221,13 +249,17 @@
     if(token===sequence) showReadout();
   }
 
-  $("number-form").addEventListener("submit",function (event) { event.preventDefault(); lookupNumber($("number-input").value,true); });
+  function submitNumber(value) {
+    var display=/^[0-9?]{4}$/.test(value) && value.indexOf("?")!==-1?"20251"+value:null;
+    return lookupNumber(value,true,display);
+  }
+  $("number-form").addEventListener("submit",function (event) { event.preventDefault(); submitNumber($("number-input").value); });
   $("number-input").addEventListener("input",function () {
-    this.value=this.value.replace(/[^\d-]/g,"");
+    this.value=this.value.replace(/[^\d?-]/g,"");
     clearTimeout(debounce);
     var value=this.value;
     clearTimeout(nameDebounce);
-    if(value.replace(/\D/g,"").length>=3) debounce=setTimeout(function () { lookupNumber(value,true); },180);
+    if(value.replace(/\D/g,"").length>=3) debounce=setTimeout(function () { submitNumber(value); },180);
   });
   $("prev-result").addEventListener("click",function () { moveResult(-1); });
   $("next-result").addEventListener("click",function () { moveResult(1); });
