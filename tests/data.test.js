@@ -15,6 +15,18 @@ test("박준후는 양방향에서 확인된 2025-19418", () => {
   assert.equal(describeMatch(byName[0], "name", students), "확인됨");
 });
 
+test("확인된 구본철·김건우 학번은 양방향에서 한 명만 연결하고 잘못된 후보를 제거", () => {
+  for (const [name,id] of [["구본철","2025-14574"],["김건우","2025-10292"]]) {
+    const byName = search(students,name).results;
+    assert.equal(byName.length,1);
+    assert.equal(byName[0].id,id);
+    assert.equal(byName[0].status,"confirmed");
+    assert.deepEqual(search(students,id).results.map(s=>s.name),[name]);
+  }
+  assert.deepEqual(search(students,"2025-15574").results.map(s=>s.name),["문수빈"]);
+  assert.equal(search(students,"문수빈").results[0].status,"probable");
+});
+
 test("사용자가 정정한 표시명은 전체 이름으로 조회하고 학번은 추정 상태 유지", () => {
   const cohort = require("../data/cohort.json");
   for (const [oldName, name, id] of [["Sassy 승경", "서승경", "2025-11412"], ["규원", "홍규원", "2025-18846"]]) {

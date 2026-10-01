@@ -88,17 +88,8 @@ window.STUDENTS = [
     "name": "구본철",
     "dept": "전기·정보공학부",
     "suffix": "574",
-    "status": "probable",
-    "note": "출결 PDF와 지정좌석표의 끝 3자리 일치에 따른 추정입니다."
-  },
-  {
-    "id": "2025-15574",
-    "seat": "3줄 10열",
-    "name": "구본철",
-    "dept": "전기·정보공학부",
-    "suffix": "574",
-    "status": "probable",
-    "note": "출결 PDF와 지정좌석표의 끝 3자리 일치에 따른 추정입니다."
+    "status": "confirmed",
+    "note": "사용자가 구본철의 학번을 2025-14574로 확인했습니다."
   },
   {
     "id": "2025-16331",
@@ -151,6 +142,15 @@ window.STUDENTS = [
     "seat": "",
     "status": "unknown",
     "note": "출결 PDF에서 같은 이름을 찾지 못했습니다."
+  },
+  {
+    "name": "김건우",
+    "dept": "전기·정보공학부",
+    "id": "2025-10292",
+    "seat": "",
+    "suffix": "292",
+    "status": "confirmed",
+    "note": "사용자가 김건우의 이름과 학번을 2025-10292로 확인했습니다."
   },
   {
     "name": "김건욱",
@@ -552,15 +552,6 @@ window.STUDENTS = [
     "name": "도윤민",
     "dept": "전기·정보공학부",
     "suffix": "700",
-    "status": "probable",
-    "note": "출결 PDF와 지정좌석표의 끝 3자리 일치에 따른 추정입니다."
-  },
-  {
-    "id": "2025-14574",
-    "seat": "8줄 12열",
-    "name": "문수빈",
-    "dept": "전기·정보공학부",
-    "suffix": "574",
     "status": "probable",
     "note": "출결 PDF와 지정좌석표의 끝 3자리 일치에 따른 추정입니다."
   },
