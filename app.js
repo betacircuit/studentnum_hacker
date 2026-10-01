@@ -48,15 +48,25 @@
 
     var sid = document.createElement("div");
     sid.className = "sid";
-    sid.appendChild(highlighted(s.id, res.mode === "id" ? res.query : "", "id"));
+    sid.appendChild(highlighted(s.id || "학번 정보 없음", res.mode === "id" ? res.query : "", "id"));
+
+    var status = document.createElement("div");
+    status.className = "status " + s.status;
+    status.textContent = Lookup.describeMatch(s, res.mode, students);
 
     var detail = document.createElement("div");
     detail.className = "detail";
-    detail.textContent = s.dept + " · 좌석 " + s.seat;
+    detail.textContent = s.dept + (s.seat ? " · 좌석표 " + s.seat : "");
+
+    var note = document.createElement("div");
+    note.className = "detail";
+    note.textContent = s.note || "";
 
     who.appendChild(name);
     who.appendChild(sid);
+    who.appendChild(status);
     who.appendChild(detail);
+    who.appendChild(note);
 
     var btn = document.createElement("button");
     btn.type = "button";
@@ -65,7 +75,7 @@
     btn.addEventListener("click", function () { copyText(s.id, btn); });
 
     li.appendChild(who);
-    li.appendChild(btn);
+    if (s.id) li.appendChild(btn);
     return li;
   }
 
@@ -74,7 +84,7 @@
     lastResults = res.results;
 
     if (res.mode === "empty") {
-      metaEl.textContent = "등록된 샘플 " + students.length + "명 중에서 검색합니다.";
+      metaEl.textContent = "등록된 이름 " + new Set(students.map(function (s) { return s.name; })).size + "명 중에서 검색합니다.";
       return;
     }
     if (res.results.length === 0) {
@@ -105,7 +115,9 @@
     students.forEach(function (s) { counts[s.name] = (counts[s.name] || 0) + 1; });
     var dup = students.find(function (s) { return counts[s.name] > 1; });
 
-    var samples = [students[0].name, students[0].id, students[0].id.slice(-3)];
+    var example = students.find(function (s) { return s.status === "confirmed"; }) || students.find(function (s) { return s.id; });
+    if (!example) return;
+    var samples = [example.name, example.id, example.id.slice(-3)];
     if (dup && samples.indexOf(dup.name) === -1) samples.push(dup.name);
 
     input.placeholder = "이름 또는 학번 입력 (예: " + samples.slice(0, 3).join(", ") + ")";
@@ -132,5 +144,15 @@
   });
 
   buildChips();
+  var missing = students.filter(function (s) { return s.status === "unknown"; });
+  document.getElementById("missing-summary").textContent = "학번 정보가 없는 이름 " + missing.length + "명";
+  missing.forEach(function (s) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "chip";
+    b.textContent = s.name;
+    b.addEventListener("click", function () { input.value = s.name; run(false); input.focus(); });
+    document.getElementById("missing-names").appendChild(b);
+  });
   run(false);
 })();

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>이름·학번 조회 (샘플)</title>
+  <title>전정 25학번 이름·학번 조회</title>
   <style>
     :root {
       --bg: #f6f7f9;
@@ -92,6 +92,12 @@
     .name { font-weight: 600; font-size: 1.05rem; }
     .sid { font-variant-numeric: tabular-nums; font-size: 1.05rem; letter-spacing: 0.02em; }
     .detail { color: var(--muted); font-size: 0.82rem; margin-top: 2px; }
+    .status { color: var(--warn-text); font-size: 0.85rem; margin: 6px 0; }
+    .status.confirmed { color: var(--accent); }
+    .status.unknown { color: var(--muted); }
+    details { margin-top: 24px; }
+    summary { cursor: pointer; color: var(--muted); }
+    li { align-items: flex-start; }
     mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1px; }
     .copy {
       flex: none; font: inherit; font-size: 0.82rem; cursor: pointer;
@@ -106,11 +112,11 @@
 </head>
 <body>
   <main>
-    <h1>이름 · 학번 조회</h1>
+    <h1>전정 25학번 이름 · 학번 조회</h1>
     <p class="sub">이름을 입력하면 학번이, 학번(일부 숫자도 가능)을 입력하면 이름이 나옵니다.</p>
 
     <div class="banner" role="note">
-      ⚠ <strong>가상 샘플 데이터 데모</strong>입니다. 표시되는 이름과 학번(2099-…)은 모두 지어낸 값이며 실제 학생 정보가 아닙니다.
+      <strong>확인됨</strong>은 전체 학번을 직접 확인한 항목입니다. 나머지는 이름 명단과 학번 끝 3자리로 추정한 후보이며, 여러 후보가 있으면 후보 간 우선순위가 없습니다.
     </div>
 
     <label class="sr" for="q">이름 또는 학번</label>
@@ -124,7 +130,12 @@
     <div class="meta" id="meta" aria-live="polite"></div>
     <ul id="results"></ul>
 
-    <footer>데이터는 data/ 폴더의 가상 CSV에서 scripts/build_data.py로 생성됩니다.</footer>
+    <details>
+      <summary id="missing-summary">학번 정보가 없는 이름</summary>
+      <div class="chips" id="missing-names"></div>
+    </details>
+
+    <footer>이름을 검색하면 학번 후보를, 학번을 검색하면 이름 후보를 표시합니다. 별명은 전체 이름 확인이 필요합니다.</footer>
   </main>
 
   <script src="data.js"></script>

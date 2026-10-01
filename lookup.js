@@ -25,12 +25,12 @@
       var d = digitsOf(q);
       if (!d) return { mode: "empty", query: "", results: [] };
       var byId = students.filter(function (s) {
-        return digitsOf(s.id).indexOf(d) !== -1;
+        return !!s.id && digitsOf(s.id).indexOf(d) !== -1;
       });
       byId.sort(function (a, b) {
         var ea = digitsOf(a.id) === d ? 0 : 1;
         var eb = digitsOf(b.id) === d ? 0 : 1;
-        return ea - eb || a.id.localeCompare(b.id);
+        return ea - eb || a.id.localeCompare(b.id) || a.name.localeCompare(b.name, "ko");
       });
       return { mode: "id", query: d, results: byId };
     }
@@ -81,7 +81,23 @@
     return out;
   }
 
-  var api = { search: search, segments: segments };
+  function describeMatch(student, mode, students) {
+    if (student.status === "unknown") return "학번 정보 없음";
+    if (student.status === "confirmed") return "확인됨";
+    var sameName = new Set(students.filter(function (s) {
+      return s.name === student.name && s.id;
+    }).map(function (s) { return s.id; })).size;
+    var sameId = new Set(students.filter(function (s) {
+      return s.id === student.id;
+    }).map(function (s) { return s.name; })).size;
+    var text = mode === "id" ? "이 이름일 가능성이 높음" : "이 학번일 가능성이 높음";
+    if (sameName > 1 || sameId > 1) {
+      text += " · 미확정 (학번 후보 " + sameName + "개 / 이름 후보 " + sameId + "명)";
+    }
+    return text;
+  }
+
+  var api = { search: search, segments: segments, describeMatch: describeMatch };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.Lookup = api;
 })(typeof window !== "undefined" ? window : globalThis);

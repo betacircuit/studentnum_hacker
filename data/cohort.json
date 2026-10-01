@@ -1,0 +1,874 @@
+[
+  {
+    "name": "허서연",
+    "fullName": true
+  },
+  {
+    "name": "허예준",
+    "fullName": true
+  },
+  {
+    "name": "허준혁",
+    "fullName": true
+  },
+  {
+    "name": "허준희",
+    "fullName": true
+  },
+  {
+    "name": "현우",
+    "fullName": false
+  },
+  {
+    "name": "홍정우",
+    "fullName": true
+  },
+  {
+    "name": "홍민균",
+    "fullName": true
+  },
+  {
+    "name": "홍원철",
+    "fullName": true
+  },
+  {
+    "name": "홍정빈",
+    "fullName": true
+  },
+  {
+    "name": "홍진목",
+    "fullName": true
+  },
+  {
+    "name": "황인성",
+    "fullName": true
+  },
+  {
+    "name": "An Phan",
+    "fullName": false
+  },
+  {
+    "name": "Don Ziyodiy",
+    "fullName": false
+  },
+  {
+    "name": "Jordan Sayno",
+    "fullName": false
+  },
+  {
+    "name": "Sassy 승경",
+    "fullName": false
+  },
+  {
+    "name": "최윤호",
+    "fullName": true
+  },
+  {
+    "name": "천영서",
+    "fullName": true
+  },
+  {
+    "name": "최우리",
+    "fullName": true
+  },
+  {
+    "name": "최민",
+    "fullName": true
+  },
+  {
+    "name": "최민준",
+    "fullName": true
+  },
+  {
+    "name": "최서진",
+    "fullName": true
+  },
+  {
+    "name": "최석원",
+    "fullName": true
+  },
+  {
+    "name": "최수현",
+    "fullName": true
+  },
+  {
+    "name": "최승혁",
+    "fullName": true
+  },
+  {
+    "name": "최어진",
+    "fullName": true
+  },
+  {
+    "name": "최영진",
+    "fullName": true
+  },
+  {
+    "name": "최우영",
+    "fullName": true
+  },
+  {
+    "name": "최재형",
+    "fullName": true
+  },
+  {
+    "name": "최지연",
+    "fullName": true
+  },
+  {
+    "name": "최태연",
+    "fullName": true
+  },
+  {
+    "name": "최현진",
+    "fullName": true
+  },
+  {
+    "name": "추야백",
+    "fullName": true
+  },
+  {
+    "name": "하장원",
+    "fullName": true
+  },
+  {
+    "name": "정주호",
+    "fullName": true
+  },
+  {
+    "name": "정준형",
+    "fullName": true
+  },
+  {
+    "name": "정진오",
+    "fullName": true
+  },
+  {
+    "name": "정희",
+    "fullName": false
+  },
+  {
+    "name": "조민재",
+    "fullName": true
+  },
+  {
+    "name": "조민후",
+    "fullName": true
+  },
+  {
+    "name": "조수명",
+    "fullName": true
+  },
+  {
+    "name": "조은휘",
+    "fullName": true
+  },
+  {
+    "name": "조익환",
+    "fullName": true
+  },
+  {
+    "name": "좌희주",
+    "fullName": true
+  },
+  {
+    "name": "주아",
+    "fullName": false
+  },
+  {
+    "name": "준구",
+    "fullName": false
+  },
+  {
+    "name": "지준호",
+    "fullName": true
+  },
+  {
+    "name": "지형진",
+    "fullName": true
+  },
+  {
+    "name": "진민준",
+    "fullName": true
+  },
+  {
+    "name": "채다원",
+    "fullName": true
+  },
+  {
+    "name": "장민규",
+    "fullName": true
+  },
+  {
+    "name": "장수민",
+    "fullName": true
+  },
+  {
+    "name": "전민성",
+    "fullName": true
+  },
+  {
+    "name": "전여준",
+    "fullName": true
+  },
+  {
+    "name": "전유빈",
+    "fullName": true
+  },
+  {
+    "name": "전윤환",
+    "fullName": true
+  },
+  {
+    "name": "전하윤",
+    "fullName": true
+  },
+  {
+    "name": "전현태",
+    "fullName": true
+  },
+  {
+    "name": "정아윤",
+    "fullName": true
+  },
+  {
+    "name": "정도환",
+    "fullName": true
+  },
+  {
+    "name": "정동영",
+    "fullName": true
+  },
+  {
+    "name": "정서진",
+    "fullName": true
+  },
+  {
+    "name": "정우성",
+    "fullName": true
+  },
+  {
+    "name": "정우진",
+    "fullName": true
+  },
+  {
+    "name": "정유수",
+    "fullName": true
+  },
+  {
+    "name": "정이안",
+    "fullName": true
+  },
+  {
+    "name": "이재희",
+    "fullName": true
+  },
+  {
+    "name": "이정달",
+    "fullName": true
+  },
+  {
+    "name": "이종호",
+    "fullName": true
+  },
+  {
+    "name": "이주형",
+    "fullName": true
+  },
+  {
+    "name": "이지환",
+    "fullName": true
+  },
+  {
+    "name": "이진우",
+    "fullName": true
+  },
+  {
+    "name": "이충현",
+    "fullName": true
+  },
+  {
+    "name": "이택영",
+    "fullName": true
+  },
+  {
+    "name": "이현중",
+    "fullName": true
+  },
+  {
+    "name": "임서진",
+    "fullName": true
+  },
+  {
+    "name": "임재휘",
+    "fullName": true
+  },
+  {
+    "name": "임정수",
+    "fullName": true
+  },
+  {
+    "name": "임지민",
+    "fullName": true
+  },
+  {
+    "name": "임해든",
+    "fullName": true
+  },
+  {
+    "name": "임형준",
+    "fullName": true
+  },
+  {
+    "name": "임희수",
+    "fullName": true
+  },
+  {
+    "name": "이서현",
+    "fullName": true
+  },
+  {
+    "name": "이성민",
+    "fullName": true
+  },
+  {
+    "name": "이세환",
+    "fullName": true
+  },
+  {
+    "name": "이수인",
+    "fullName": true
+  },
+  {
+    "name": "이승동",
+    "fullName": true
+  },
+  {
+    "name": "이신후",
+    "fullName": true
+  },
+  {
+    "name": "이연우",
+    "fullName": true
+  },
+  {
+    "name": "이영학",
+    "fullName": true
+  },
+  {
+    "name": "이용현",
+    "fullName": true
+  },
+  {
+    "name": "이우진",
+    "fullName": true
+  },
+  {
+    "name": "이윤성",
+    "fullName": true
+  },
+  {
+    "name": "이은우",
+    "fullName": true
+  },
+  {
+    "name": "이인희",
+    "fullName": true
+  },
+  {
+    "name": "이재웅",
+    "fullName": true
+  },
+  {
+    "name": "이재현",
+    "fullName": true
+  },
+  {
+    "name": "오영민",
+    "fullName": true
+  },
+  {
+    "name": "오채원",
+    "fullName": true
+  },
+  {
+    "name": "우재",
+    "fullName": false
+  },
+  {
+    "name": "유동현",
+    "fullName": true
+  },
+  {
+    "name": "유승곤",
+    "fullName": true
+  },
+  {
+    "name": "유주연",
+    "fullName": true
+  },
+  {
+    "name": "유지호",
+    "fullName": true
+  },
+  {
+    "name": "유호준",
+    "fullName": true
+  },
+  {
+    "name": "윤영우",
+    "fullName": true
+  },
+  {
+    "name": "윤준영",
+    "fullName": true
+  },
+  {
+    "name": "윤찬영",
+    "fullName": true
+  },
+  {
+    "name": "이근서",
+    "fullName": true
+  },
+  {
+    "name": "이나현",
+    "fullName": true
+  },
+  {
+    "name": "이도원",
+    "fullName": true
+  },
+  {
+    "name": "이상준",
+    "fullName": true
+  },
+  {
+    "name": "이서윤",
+    "fullName": true
+  },
+  {
+    "name": "손현음",
+    "fullName": true
+  },
+  {
+    "name": "송희경",
+    "fullName": true
+  },
+  {
+    "name": "송민상",
+    "fullName": true
+  },
+  {
+    "name": "왕승연",
+    "fullName": true
+  },
+  {
+    "name": "백승유",
+    "fullName": true
+  },
+  {
+    "name": "신수민",
+    "fullName": true
+  },
+  {
+    "name": "신정혁",
+    "fullName": true
+  },
+  {
+    "name": "심윤서",
+    "fullName": true
+  },
+  {
+    "name": "심재호",
+    "fullName": true
+  },
+  {
+    "name": "심정빈",
+    "fullName": true
+  },
+  {
+    "name": "안준혁",
+    "fullName": true
+  },
+  {
+    "name": "양재혁",
+    "fullName": true
+  },
+  {
+    "name": "양윤협",
+    "fullName": true
+  },
+  {
+    "name": "어재희",
+    "fullName": true
+  },
+  {
+    "name": "염훈",
+    "fullName": true
+  },
+  {
+    "name": "방지현",
+    "fullName": true
+  },
+  {
+    "name": "변성현",
+    "fullName": true
+  },
+  {
+    "name": "변은섭",
+    "fullName": true
+  },
+  {
+    "name": "변재경",
+    "fullName": true
+  },
+  {
+    "name": "구본철",
+    "fullName": true
+  },
+  {
+    "name": "사은서",
+    "fullName": true
+  },
+  {
+    "name": "서민준",
+    "fullName": true
+  },
+  {
+    "name": "서이안",
+    "fullName": true
+  },
+  {
+    "name": "서정훈",
+    "fullName": true
+  },
+  {
+    "name": "서지호",
+    "fullName": true
+  },
+  {
+    "name": "선하람",
+    "fullName": true
+  },
+  {
+    "name": "성지민",
+    "fullName": true
+  },
+  {
+    "name": "손승현",
+    "fullName": true
+  },
+  {
+    "name": "손정현",
+    "fullName": true
+  },
+  {
+    "name": "손종현",
+    "fullName": true
+  },
+  {
+    "name": "손준범",
+    "fullName": true
+  },
+  {
+    "name": "박준후",
+    "fullName": true
+  },
+  {
+    "name": "박건기",
+    "fullName": true
+  },
+  {
+    "name": "박건용",
+    "fullName": true
+  },
+  {
+    "name": "박성환",
+    "fullName": true
+  },
+  {
+    "name": "박세환",
+    "fullName": true
+  },
+  {
+    "name": "박유찬",
+    "fullName": true
+  },
+  {
+    "name": "박유현",
+    "fullName": true
+  },
+  {
+    "name": "박윤재",
+    "fullName": true
+  },
+  {
+    "name": "박재형",
+    "fullName": true
+  },
+  {
+    "name": "박준서",
+    "fullName": true
+  },
+  {
+    "name": "박준영",
+    "fullName": true
+  },
+  {
+    "name": "박지호",
+    "fullName": true
+  },
+  {
+    "name": "박지환",
+    "fullName": true
+  },
+  {
+    "name": "박한결",
+    "fullName": true
+  },
+  {
+    "name": "박홍준",
+    "fullName": true
+  },
+  {
+    "name": "김찬식",
+    "fullName": true
+  },
+  {
+    "name": "김찬우",
+    "fullName": true
+  },
+  {
+    "name": "김태수",
+    "fullName": true
+  },
+  {
+    "name": "김태현",
+    "fullName": true
+  },
+  {
+    "name": "김형진",
+    "fullName": true
+  },
+  {
+    "name": "김혜빈",
+    "fullName": true
+  },
+  {
+    "name": "김혜윤",
+    "fullName": true
+  },
+  {
+    "name": "남석윤",
+    "fullName": true
+  },
+  {
+    "name": "도윤",
+    "fullName": false
+  },
+  {
+    "name": "도윤민",
+    "fullName": true
+  },
+  {
+    "name": "문수빈",
+    "fullName": true
+  },
+  {
+    "name": "문신혁",
+    "fullName": true
+  },
+  {
+    "name": "문정완",
+    "fullName": true
+  },
+  {
+    "name": "박민균",
+    "fullName": true
+  },
+  {
+    "name": "김민우",
+    "fullName": true
+  },
+  {
+    "name": "김승혁",
+    "fullName": true
+  },
+  {
+    "name": "김영서",
+    "fullName": true
+  },
+  {
+    "name": "김요환",
+    "fullName": true
+  },
+  {
+    "name": "김우석",
+    "fullName": true
+  },
+  {
+    "name": "김우성",
+    "fullName": true
+  },
+  {
+    "name": "김유민",
+    "fullName": true
+  },
+  {
+    "name": "김유신",
+    "fullName": true
+  },
+  {
+    "name": "김이현",
+    "fullName": true
+  },
+  {
+    "name": "김재민",
+    "fullName": true
+  },
+  {
+    "name": "김재원",
+    "fullName": true
+  },
+  {
+    "name": "김준하",
+    "fullName": true
+  },
+  {
+    "name": "김준현",
+    "fullName": true
+  },
+  {
+    "name": "김준형",
+    "fullName": true
+  },
+  {
+    "name": "김지후",
+    "fullName": true
+  },
+  {
+    "name": "김진우",
+    "fullName": true
+  },
+  {
+    "name": "김진형",
+    "fullName": true
+  },
+  {
+    "name": "김건민",
+    "fullName": true
+  },
+  {
+    "name": "김건욱",
+    "fullName": true
+  },
+  {
+    "name": "김규민",
+    "fullName": true
+  },
+  {
+    "name": "김규현",
+    "fullName": true
+  },
+  {
+    "name": "김도연",
+    "fullName": true
+  },
+  {
+    "name": "김도현",
+    "fullName": true
+  },
+  {
+    "name": "김동현",
+    "fullName": true
+  },
+  {
+    "name": "김명준",
+    "fullName": true
+  },
+  {
+    "name": "김무진",
+    "fullName": true
+  },
+  {
+    "name": "김민서",
+    "fullName": true
+  },
+  {
+    "name": "김민혁",
+    "fullName": true
+  },
+  {
+    "name": "김석현",
+    "fullName": true
+  },
+  {
+    "name": "김선재",
+    "fullName": true
+  },
+  {
+    "name": "김성주",
+    "fullName": true
+  },
+  {
+    "name": "김성현",
+    "fullName": true
+  },
+  {
+    "name": "최재원",
+    "fullName": true
+  },
+  {
+    "name": "강동원",
+    "fullName": true
+  },
+  {
+    "name": "강민서",
+    "fullName": true
+  },
+  {
+    "name": "강승범",
+    "fullName": true
+  },
+  {
+    "name": "강태경",
+    "fullName": true
+  },
+  {
+    "name": "고동구",
+    "fullName": true
+  },
+  {
+    "name": "고민재",
+    "fullName": true
+  },
+  {
+    "name": "곽정민",
+    "fullName": true
+  },
+  {
+    "name": "권재윤",
+    "fullName": true
+  },
+  {
+    "name": "권도현",
+    "fullName": true
+  },
+  {
+    "name": "규영",
+    "fullName": false
+  },
+  {
+    "name": "규원",
+    "fullName": false
+  },
+  {
+    "name": "기태현",
+    "fullName": true
+  },
+  {
+    "name": "김강민",
+    "fullName": true
+  }
+]
